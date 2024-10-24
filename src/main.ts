@@ -1,4 +1,5 @@
 import "./style.css";
+
 //CASO 1
 interface Reserva {
   tipoHabitacion: "standard" | "suite";
@@ -52,7 +53,7 @@ class preciosReservas {
     return precio;
   };
 
-  calculaTotal() {
+   calculaTotal = () => {
     const subTotal = this.calculaSubtotal();
     const total = subTotal + (subTotal * 21) / 100;
     return total;
@@ -72,5 +73,29 @@ const calcularPrecios = (reserva: Reserva) => {
 
 reservas.forEach((reserva) => {
 calcularPrecios(reserva)
-   
 })
+
+//CASO 2
+class precioTourOperador extends preciosReservas {
+  constructor(tipoHabitacion : string ,personas : number, noches : number){
+    super(tipoHabitacion, personas,noches);
+    this.precioHabitacion = 100;
+  }
+  
+calculaSubtotal = () => {
+  let precio = this.precioHabitacion * this.noches;
+
+  if (this.personas > 1) {
+    const extraPorPersona = (this.personas - 1) * 40;
+    precio += this.noches * extraPorPersona;
+  }
+  return precio;
+};
+calculaTotal = () => {
+  const subTotal = this.calculaSubtotal();
+  const totalSinDescuento = subTotal + (subTotal * 21) / 100;
+  const total = totalSinDescuento - ((totalSinDescuento * 15) /100)
+  return total;
+}
+
+}
