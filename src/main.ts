@@ -99,3 +99,19 @@ calculaTotal = () => {
 }
 
 }
+
+
+const calcularPrecioTourOperador = (reserva: Reserva) => {
+  const precio = new precioTourOperador(
+    reserva.tipoHabitacion,
+    reserva.pax,
+    reserva.noches
+  );
+  console.log(
+    `Subtotal: ${precio.calculaSubtotal()}, Total : ${precio.calculaTotal()}`
+  );
+};
+
+reservas.forEach((reserva) => {
+calcularPrecioTourOperador(reserva)
+})
