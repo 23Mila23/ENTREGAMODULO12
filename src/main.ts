@@ -1,13 +1,13 @@
 import "./style.css";
 
 //CASO 1
-interface Reserva {
+export interface Reserva {
   tipoHabitacion: "standard" | "suite";
   pax: number;
   noches: number;
 }
 
-const reservas : Reserva[] = [
+export const reservas : Reserva[] = [
   {
     tipoHabitacion: "standard",
     pax: 1,
